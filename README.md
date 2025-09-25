@@ -1,6 +1,6 @@
-# CarWash Pro - Premium Car Wash & Detailing Services
+# F-Car Parkway - Premium Car Wash & Detailing Services
 
-A modern, responsive web application for a car wash and detailing business built with Python Flask.
+A modern, responsive web application for F-Car Parkway car wash and detailing business built with Python Flask.
 
 ## Features
 
@@ -12,17 +12,28 @@ A modern, responsive web application for a car wash and detailing business built
 
 ## Services Offered
 
-1. **Basic Car Wash** - $25.00 (30 minutes)
-   - Exterior wash, tire cleaning, and basic interior vacuum
+1. **Premium Car Wash** - ₱200.00 (45 minutes)
+   - Exterior wash, tire cleaning, gas cap cleaning, and basic interior vacuum
 
-2. **Premium Car Wash** - $45.00 (60 minutes)
-   - Full exterior wash, wax, tire shine, and interior detailing
+2. **Premium Car Wash with Wax** - ₱500.00 (60 minutes)
+   - Full exterior wash, wax, tire shine, gas cap cleaning, exterior waxing, and interior detailing
 
-3. **Full Detailing** - $120.00 (120 minutes)
+3. **Full Detailing** - ₱7,000.00 (2 days)
    - Complete interior and exterior detailing with premium products
 
-4. **Interior Detailing** - $80.00 (90 minutes)
+4. **Interior Detailing** - ₱3,500.00 (1 day)
    - Deep interior cleaning, leather conditioning, and odor removal
+
+## Business Information
+
+- **Business Name**: F-Car Parkway Carwash and Detailing Services
+- **Location**: Mangilag Sur, Maharlika Highway
+- **Phone**: 0906272649
+- **Email**: patrickfestejo@gmail.com
+- **Operating Hours**: 
+  - Tuesday - Saturday: 8:00 AM - 7:00 PM
+  - Monday: Day off
+- **Facebook**: [F-Car Parkway Facebook Page](https://www.facebook.com/profile.php?id=100082895004476)
 
 ## Installation & Setup
 
@@ -69,9 +80,9 @@ Carwash/
 
 ### Landing Page
 - Hero section with call-to-action buttons
-- Services overview with pricing
+- Services overview with pricing in Philippine Peso (₱)
 - Customer testimonials
-- Why choose us section
+- Why choose F-Car Parkway section
 - Contact information
 
 ### Booking System
@@ -102,7 +113,7 @@ Carwash/
 
 ## Future Enhancements
 
-- [ ] Payment gateway integration (Stripe, PayPal)
+- [ ] Payment gateway integration (Stripe, PayPal, GCash, PayMaya)
 - [ ] User authentication and accounts
 - [ ] Booking management system
 - [ ] Email notifications
@@ -110,6 +121,7 @@ Carwash/
 - [ ] Mobile app
 - [ ] Real-time booking availability
 - [ ] Customer reviews and ratings
+- [ ] Integration with local payment methods
 
 ## Development Notes
 
@@ -123,8 +135,11 @@ Carwash/
 
 ## Contact
 
-For questions about this project or to request features, please contact the development team.
+For questions about this project or to request features, please contact:
+- **Email**: patrickfestejo@gmail.com
+- **Phone**: 0906272649
+- **Facebook**: [F-Car Parkway](https://www.facebook.com/profile.php?id=100082895004476)
 
 ---
 
-**CarWash Pro** - Professional car care services with modern technology.
+**F-Car Parkway** - Professional car care services with modern technology. Located in Mangilag Sur, Maharlika Highway.
