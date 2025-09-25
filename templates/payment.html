@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}Payment - F-Car Parkway{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="text-center mb-5">
+                <h1 class="display-5 fw-bold mb-3">Payment</h1>
+                <p class="lead text-muted">Complete your booking by processing payment for your selected service.</p>
+            </div>
+
+            <!-- Under Construction Notice -->
+            <div class="construction-notice bg-warning bg-opacity-10 border border-warning rounded-lg p-5 text-center mb-5">
+                <div class="construction-icon mb-4">
+                    <i class="fas fa-tools text-warning" style="font-size: 4rem;"></i>
+                </div>
+                <h2 class="fw-bold text-warning mb-3">Payment System Under Construction</h2>
+                <p class="lead mb-4">We're currently working on implementing our secure payment system. Your booking has been saved and we'll contact you soon to complete the payment process.</p>
+                
+                <div class="row g-4 mb-4">
+                    <div class="col-md-4">
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt text-primary fa-2x mb-3"></i>
+                            <h6 class="fw-bold">Secure Payment</h6>
+                            <p class="text-muted small">SSL encrypted transactions</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-item">
+                            <i class="fas fa-credit-card text-primary fa-2x mb-3"></i>
+                            <h6 class="fw-bold">Multiple Options</h6>
+                            <p class="text-muted small">Credit cards, PayPal, Apple Pay</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-item">
+                            <i class="fas fa-receipt text-primary fa-2x mb-3"></i>
+                            <h6 class="fw-bold">Instant Receipt</h6>
+                            <p class="text-muted small">Email confirmation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-info">
+                    <h6 class="fw-bold mb-2">
+                        <i class="fas fa-info-circle me-2"></i>What happens next?
+                    </h6>
+                    <ul class="list-unstyled mb-0 text-start">
+                        <li><i class="fas fa-check text-success me-2"></i>Your booking request has been received</li>
+                        <li><i class="fas fa-check text-success me-2"></i>We'll contact you within 24 hours to confirm details</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Payment can be made over the phone or in-person</li>
+                        <li><i class="fas fa-check text-success me-2"></i>You'll receive confirmation and service details</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mock Payment Form (Disabled) -->
+            <div class="payment-form bg-white rounded shadow-lg p-5 mb-5" style="opacity: 0.6;">
+                <h4 class="fw-bold mb-4">
+                    <i class="fas fa-credit-card me-2"></i>Payment Information
+                </h4>
+                
+                <div class="row g-3 mb-4">
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Card Number</label>
+                        <input type="text" class="form-control" placeholder="1234 5678 9012 3456" disabled>
+                    </div>
+                </div>
+                
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Expiry Date</label>
+                        <input type="text" class="form-control" placeholder="MM/YY" disabled>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">CVV</label>
+                        <input type="text" class="form-control" placeholder="123" disabled>
+                    </div>
+                </div>
+                
+                <div class="row g-3 mb-4">
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Cardholder Name</label>
+                        <input type="text" class="form-control" placeholder="John Doe" disabled>
+                    </div>
+                </div>
+                
+                <div class="row g-3 mb-4">
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Billing Address</label>
+                        <textarea class="form-control" rows="3" placeholder="Enter your billing address" disabled></textarea>
+                    </div>
+                </div>
+                
+                <div class="payment-summary bg-light rounded p-4 mb-4">
+                    <h6 class="fw-bold mb-3">Payment Summary</h6>
+                    <div class="d-flex justify-content-between">
+                        <span>Service Fee:</span>
+                        <span class="fw-bold">₱3,000.00</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Tax (8.5%):</span>
+                        <span class="fw-bold">₱180.00</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <span class="fw-bold">Total:</span>
+                        <span class="fw-bold text-primary">₱3,180.00</span>
+                    </div>
+                </div>
+                
+                <button type="button" class="btn btn-primary btn-lg w-100" disabled>
+                    <i class="fas fa-lock me-2"></i>Process Payment (Coming Soon)
+                </button>
+            </div>
+
+            <!-- Alternative Contact Methods -->
+            <div class="alternative-payment bg-light rounded p-5">
+                <h4 class="fw-bold mb-4">
+                    <i class="fas fa-phone me-2"></i>Alternative Payment Methods
+                </h4>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="payment-method text-center p-3">
+                            <i class="fas fa-phone text-primary fa-2x mb-3"></i>
+                            <h6 class="fw-bold">Call Us</h6>
+                            <p class="text-muted small">Pay over the phone with our friendly staff</p>
+                            <a href="tel:0906272649" class="btn btn-outline-primary btn-sm">0906272649</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="payment-method text-center p-3">
+                            <i class="fas fa-map-marker-alt text-primary fa-2x mb-3"></i>
+                            <h6 class="fw-bold">Pay On-Site</h6>
+                            <p class="text-muted small">Cash, card, or mobile payment when you arrive</p>
+                            <a href="{{ url_for('contact') }}" class="btn btn-outline-primary btn-sm">Get Directions</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="text-center mt-5">
+                <a href="{{ url_for('booking') }}" class="btn btn-outline-primary btn-lg me-3">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Booking
+                </a>
+                <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-home me-2"></i>Return Home
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

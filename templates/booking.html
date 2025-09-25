@@ -1,0 +1,214 @@
+{% extends "base.html" %}
+
+{% block title %}Book Your Service - F-Car Parkway{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="text-center mb-5">
+                <h1 class="display-5 fw-bold mb-3">Book Your Service</h1>
+                <p class="lead text-muted">Fill out the form below to schedule your car wash or detailing appointment.</p>
+            </div>
+
+            <div class="booking-form bg-white rounded shadow-lg p-5">
+                <form method="POST" action="{{ url_for('submit_booking') }}" id="bookingForm">
+                    <!-- Personal Information -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h4 class="fw-bold mb-3 text-primary">
+                                <i class="fas fa-user me-2"></i>Personal Information
+                            </h4>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label for="name" class="form-label fw-semibold">Full Name *</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email" class="form-label fw-semibold">Email Address *</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-3 mb-5">
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label fw-semibold">Phone Number *</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="vehicle_type" class="form-label fw-semibold">Vehicle Type *</label>
+                            <select class="form-select" id="vehicle_type" name="vehicle_type" required>
+                                <option value="">Select Vehicle Type</option>
+                                <option value="sedan">Sedan</option>
+                                <option value="suv">SUV</option>
+                                <option value="truck">Truck</option>
+                                <option value="coupe">Coupe</option>
+                                <option value="hatchback">Hatchback</option>
+                                <option value="convertible">Convertible</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Service Selection -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h4 class="fw-bold mb-3 text-primary">
+                                <i class="fas fa-concierge-bell me-2"></i>Service Selection
+                            </h4>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Choose Your Service *</label>
+                        <div class="service-options">
+                            {% for service_id, service in services.items() %}
+                            <div class="service-option border rounded p-3 mb-3" data-service="{{ service_id }}">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="service" id="{{ service_id }}" value="{{ service_id }}" required>
+                                    <label class="form-check-label w-100" for="{{ service_id }}">
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <div>
+                                                <h6 class="fw-bold mb-1">{{ service.name }}</h6>
+                                                <p class="text-muted mb-0">{{ service.description }}</p>
+                                                <small class="text-muted">
+                                                    <i class="fas fa-clock me-1"></i>{{ service.duration }} {{ service.duration_unit if service.duration_unit else 'minutes' }}
+                                                </small>
+                                            </div>
+                                            <div class="text-end">
+                                                <span class="h5 text-primary fw-bold">₱{{ "%.2f"|format(service.price) }}</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Scheduling -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h4 class="fw-bold mb-3 text-primary">
+                                <i class="fas fa-calendar-alt me-2"></i>Schedule Appointment
+                            </h4>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label for="date" class="form-label fw-semibold">Preferred Date *</label>
+                            <input type="date" class="form-control" id="date" name="date" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="time" class="form-label fw-semibold">Preferred Time *</label>
+                            <select class="form-select" id="time" name="time" required>
+                                <option value="">Select Time</option>
+                                {% for slot in time_slots %}
+                                <option value="{{ slot }}">{{ slot }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Vehicle Information -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h4 class="fw-bold mb-3 text-primary">
+                                <i class="fas fa-car me-2"></i>Vehicle Information
+                            </h4>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-3 mb-5">
+                        <div class="col-md-6">
+                            <label for="license_plate" class="form-label fw-semibold">License Plate *</label>
+                            <input type="text" class="form-control" id="license_plate" name="license_plate" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="special_requests" class="form-label fw-semibold">Special Requests</label>
+                            <input type="text" class="form-control" id="special_requests" name="special_requests" placeholder="Any special instructions or requests">
+                        </div>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="booking-summary bg-light rounded p-4 mb-4" id="bookingSummary" style="display: none;">
+                        <h5 class="fw-bold mb-3">Booking Summary</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="mb-1"><strong>Service:</strong> <span id="summaryService">-</span></p>
+                                <p class="mb-1"><strong>Date:</strong> <span id="summaryDate">-</span></p>
+                                <p class="mb-1"><strong>Time:</strong> <span id="summaryTime">-</span></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="mb-1"><strong>Vehicle:</strong> <span id="summaryVehicle">-</span></p>
+                                <p class="mb-1"><strong>Duration:</strong> <span id="summaryDuration">-</span></p>
+                                <p class="mb-1"><strong>Total:</strong> <span id="summaryTotal" class="text-primary fw-bold">-</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg px-5">
+                            <i class="fas fa-calendar-check me-2"></i>Book Appointment
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('bookingForm');
+    const summaryDiv = document.getElementById('bookingSummary');
+    const services = {{ services|tojson }};
+    
+    // Set minimum date to today
+    const dateInput = document.getElementById('date');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+    
+    // Update summary when form changes
+    function updateSummary() {
+        const serviceId = document.querySelector('input[name="service"]:checked')?.value;
+        const date = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
+        const vehicle = document.getElementById('vehicle_type').value;
+        
+        if (serviceId && date && time && vehicle) {
+            const service = services[serviceId];
+            document.getElementById('summaryService').textContent = service.name;
+            document.getElementById('summaryDate').textContent = new Date(date).toLocaleDateString();
+            document.getElementById('summaryTime').textContent = time;
+            document.getElementById('summaryVehicle').textContent = vehicle.charAt(0).toUpperCase() + vehicle.slice(1);
+            document.getElementById('summaryDuration').textContent = service.duration + ' ' + (service.duration_unit || 'minutes');
+            document.getElementById('summaryTotal').textContent = '₱' + service.price.toFixed(2);
+            summaryDiv.style.display = 'block';
+        } else {
+            summaryDiv.style.display = 'none';
+        }
+    }
+    
+    // Add event listeners
+    form.addEventListener('change', updateSummary);
+    form.addEventListener('input', updateSummary);
+    
+    // Service option click handler
+    document.querySelectorAll('.service-option').forEach(option => {
+        option.addEventListener('click', function() {
+            const radio = this.querySelector('input[type="radio"]');
+            radio.checked = true;
+            updateSummary();
+        });
+    });
+});
+</script>
+{% endblock %}

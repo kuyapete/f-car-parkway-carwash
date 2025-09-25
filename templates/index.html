@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Premium Car Wash & Detailing Services</h1>
+                <p class="lead mb-4">Give your vehicle the care it deserves with our professional car wash and detailing services. Quality guaranteed!</p>
+                <div class="hero-buttons">
+                    <a href="{{ url_for('booking') }}" class="btn btn-light btn-lg me-3 mb-2">
+                        <i class="fas fa-calendar-plus me-2"></i>Book Now
+                    </a>
+                    <a href="{{ url_for('about') }}" class="btn btn-outline-light btn-lg mb-2">
+                        <i class="fas fa-info-circle me-2"></i>Learn More
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="hero-image">
+                    <i class="fas fa-car-wash display-1 opacity-75"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Why Choose F-Car Parkway?</h2>
+                <p class="lead text-muted">We provide exceptional service with attention to detail and customer satisfaction.</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card text-center p-4 h-100">
+                    <div class="feature-icon bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3">
+                        <i class="fas fa-shield-alt text-primary fa-2x"></i>
+                    </div>
+                    <h5 class="fw-bold mb-3">Quality Guaranteed</h5>
+                    <p class="text-muted">We use premium products and professional techniques to ensure your vehicle looks its best.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card text-center p-4 h-100">
+                    <div class="feature-icon bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3">
+                        <i class="fas fa-clock text-primary fa-2x"></i>
+                    </div>
+                    <h5 class="fw-bold mb-3">Quick & Efficient</h5>
+                    <p class="text-muted">Our experienced team works efficiently to get your vehicle cleaned and ready in no time.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card text-center p-4 h-100">
+                    <div class="feature-icon bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3">
+                        <i class="fas fa-dollar-sign text-primary fa-2x"></i>
+                    </div>
+                    <h5 class="fw-bold mb-3">Affordable Prices</h5>
+                    <p class="text-muted">Competitive pricing with packages designed to fit every budget and need.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Our Services</h2>
+                <p class="lead text-muted">Choose from our range of professional car wash and detailing services.</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            {% for service_id, service in services.items() %}
+            <div class="col-lg-6">
+                <div class="service-card bg-white rounded shadow-sm p-4 h-100">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <h5 class="fw-bold mb-0">{{ service.name }}</h5>
+                        <span class="badge bg-primary fs-6">₱{{ "%.2f"|format(service.price) }}</span>
+                    </div>
+                    <p class="text-muted mb-3">{{ service.description }}</p>
+                    <div class="service-details d-flex justify-content-between align-items-center">
+                        <small class="text-muted">
+                            <i class="fas fa-clock me-1"></i>{{ service.duration }} {{ service.duration_unit if service.duration_unit else 'minutes' }}
+                        </small>
+                        <a href="{{ url_for('booking') }}" class="btn btn-outline-primary btn-sm">
+                            Book Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">What Our Customers Say</h2>
+                <p class="lead text-muted">Don't just take our word for it - hear from our satisfied customers.</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="testimonial-card bg-white rounded shadow-sm p-4 h-100">
+                    <div class="stars mb-3">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                    </div>
+                    <p class="text-muted mb-3">"Excellent service! My car has never looked better. The team was professional and efficient."</p>
+                    <div class="d-flex align-items-center">
+                        <div class="customer-avatar bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3">
+                            <i class="fas fa-user text-primary"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-0">John Smith</h6>
+                            <small class="text-muted">Regular Customer</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card bg-white rounded shadow-sm p-4 h-100">
+                    <div class="stars mb-3">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                    </div>
+                    <p class="text-muted mb-3">"Outstanding quality and great value. I've been coming here for months and always satisfied."</p>
+                    <div class="d-flex align-items-center">
+                        <div class="customer-avatar bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3">
+                            <i class="fas fa-user text-primary"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-0">Sarah Johnson</h6>
+                            <small class="text-muted">Premium Member</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card bg-white rounded shadow-sm p-4 h-100">
+                    <div class="stars mb-3">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                    </div>
+                    <p class="text-muted mb-3">"Fast, friendly, and thorough. My car looks brand new every time. Highly recommended!"</p>
+                    <div class="d-flex align-items-center">
+                        <div class="customer-avatar bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3">
+                            <i class="fas fa-user text-primary"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-0">Mike Davis</h6>
+                            <small class="text-muted">Business Customer</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="fw-bold mb-3">Ready to Give Your Car the Treatment It Deserves?</h3>
+                <p class="lead mb-0">Book your appointment today and experience the difference professional car care makes.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="{{ url_for('booking') }}" class="btn btn-light btn-lg">
+                    <i class="fas fa-calendar-plus me-2"></i>Book Your Service
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
